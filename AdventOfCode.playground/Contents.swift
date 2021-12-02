@@ -2,24 +2,14 @@ import Foundation
 
 public enum Day<#X#> {
     public static func puzzle1() -> Int {
-        let input = loadInput()
+        let input: [Int] = loadInput(forDay: <#X#>)
         return 0
-    }
-
-    static func loadInput() -> [Int] {
-        guard let fileURL = Bundle.main.url(forResource: "input-day<#X#>", withExtension: "txt"),
-        let input = try? String(contentsOf: fileURL, encoding: .utf8) else {
-            fatalError("Failed to load input")
-        }
-        return input.trimmingCharacters(in: .whitespacesAndNewlines)
-            .components(separatedBy: .controlCharacters)
-            .compactMap(Int.init)
     }
 }
 
-public extension Day1 {
+public extension Day<#X#> {
     static func puzzle2() -> Int {
-        let input = loadInput()
+        let input: [String] = loadInput(forDay: <#X#>)
         return 0
     }
 }

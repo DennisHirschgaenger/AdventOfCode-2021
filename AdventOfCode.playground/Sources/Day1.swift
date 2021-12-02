@@ -2,7 +2,7 @@ import Foundation
 
 public enum Day1 {
     public static func puzzle1() -> Int {
-        let depths = loadInput()
+        let depths: [Int] = loadInput(forDay: 1)
         var numberOfIncrements = 0
         var previousDepth: Int?
         for depth in depths {
@@ -13,21 +13,11 @@ public enum Day1 {
         }
         return numberOfIncrements
     }
-
-    static func loadInput() -> [Int] {
-        guard let fileURL = Bundle.main.url(forResource: "input-day1", withExtension: "txt"),
-        let input = try? String(contentsOf: fileURL, encoding: .utf8) else {
-            fatalError("Failed to load input")
-        }
-        return input.trimmingCharacters(in: .whitespacesAndNewlines)
-            .components(separatedBy: .controlCharacters)
-            .compactMap(Int.init)
-    }
 }
 
 public extension Day1 {
     static func puzzle2() -> Int {
-        let depths = loadInput()
+        let depths: [Int] = loadInput(forDay: 1)
         var numberOfIncrements = 0
         var previousDepth: Int?
         for index in depths.indices {
