@@ -2,29 +2,14 @@ import Foundation
 
 public enum Day6 {
     public static func puzzle1() -> Int {
-        let lanternFish: [Int] = loadCommaSeparatedInput(forDay: 6)
-
-        let fishDict = setUpDictionary(forFish: lanternFish)
-        return computeNumberOfFish(initialDict: fishDict, afterDays: 80)
+        let population: [Int] = loadCommaSeparatedInput(forDay: 6)
+        return computeFishCount(afterDays: 80, initialPopulation: population)
     }
 
-    private static func setUpDictionary(forFish lanternFish: [Int]) -> [Int: Int] {
-        lanternFish.reduce([Int: Int]()) { dict, fish in
-            var dict = dict
-            if let count = dict[fish] {
-                dict[fish] = count + 1
-            } else {
-                dict[fish] = 1
-            }
-            return dict
-        }
-    }
-
-    private static func computeNumberOfFish(initialDict: [Int: Int], afterDays days: Int) -> Int {
-        var fishDict = initialDict
-        var totalCount = fishDict.values.reduce(0) { $0 + $1 }
-        for _ in 0..<days {
-            fishDict = fishDict.reduce([Int: Int]()) { dict, element in
+    private static func computeFishCount(afterDays numberOfDays: Int, initialPopulation: [Int]) -> Int {
+        var dict = Dictionary(grouping: initialPopulation, by: { $0 }).mapValues(\.count)
+        for _ in 0..<numberOfDays {
+            dict = dict.reduce([Int: Int]()) { dict, element in
                 var dict = dict
                 if element.key == 0 {
                     dict[6] = (dict[6] ?? 0) + element.value
@@ -34,17 +19,14 @@ public enum Day6 {
                 }
                 return dict
             }
-            totalCount = fishDict.values.reduce(0) { $0 + $1 }
         }
-        return totalCount
+        return dict.values.reduce(0) { $0 + $1 }
     }
 }
 
 public extension Day6 {
     static func puzzle2() -> Int {
-        let lanternFish: [Int] = loadCommaSeparatedInput(forDay: 6)
-
-        let fishDict = setUpDictionary(forFish: lanternFish)
-        return computeNumberOfFish(initialDict: fishDict, afterDays: 256)
+        let population: [Int] = loadCommaSeparatedInput(forDay: 6)
+        return computeFishCount(afterDays: 256, initialPopulation: population)
     }
 }
