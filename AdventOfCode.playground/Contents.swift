@@ -2,14 +2,14 @@ import Foundation
 
 public enum Day<#X#> {
     public static func puzzle1() -> Int {
-        let input: [Int] = loadInput(forDay: <#X#>)
+        let input: [<#Type#>] = loadInput(forDay: <#X#>)
         return 0
     }
 }
 
 public extension Day<#X#> {
     static func puzzle2() -> Int {
-        let input: [String] = loadInput(forDay: <#X#>)
+        let input: [<#Type#>] = loadInput(forDay: <#X#>)
         return 0
     }
 }
